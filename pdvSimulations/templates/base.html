@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fischer - Simulação PDV</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script-->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="https://www.fischer.com.br/">
+            <img src="{% static 'imgs/Fischer_White.png'%}" alt="LOGO"> 
+          </a>
+          <span class="h2 text-white fw-lighter">{% block title %} Inserir Simulação {% endblock %}</span>
+          <a class="nav-link active" href="{% url 'simulations' %}"><span style="color: #996674;" class="navbar-text h1">SimulaPDV</span></a>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+        {% block content %}
+        {% endblock %}    
+    </div>
+    <br>
+    <footer class="bg-dark text-center text-white">
+        <!--div class="container-fluid">
+          <section >
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="bi bi-cloud-lightning-rain"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="bi bi-cup-hot"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="bi bi-gem"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="bi bi-infinity"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="bi bi-snow2"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="bi bi-stars"></i></a>
+          </section>
+        </div-->
+      
+        <table class="text-center container-fluid" style="background-color: black;"> 
+          <thead>
+            <tr>
+              <td><a href="https://modelovencedor.com.br/"><img src="{% static 'imgs/MV_LOGO_B_SMARGEM.png'%}" alt="LOGO"></a></td>
+              <td><a href="https://www.ravencode.solutions/"><img src="{% static 'imgs/ravencode.png'%}" alt="LOGO"></a></td>
+              <td><a href=""><img src="{% static 'imgs/codehunter1.jpg'%}" alt="LOGO"></a></td>
+            </tr>
+          </thead>
+        </table>
+      </footer>
+    </body>
+</html>

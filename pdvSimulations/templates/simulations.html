@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <form method="POST">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+
+            <div class="text-end">
+                <button onclick="location.href='{% url 'simulations' %}'" type="button" class="btn btn-secondary">Nova Simulação</button>
+                <input type="submit" value="Salvar Simulação" class="btn btn-success">
+            </div>
+            
+        </form>
+    </div>
+    <br>
+    {% if todas_simulacoes %}
+    <h3>Lista de Simulações</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-danger text-center">
+                <th>Itens</th>
+                <th>Simulação</th>
+                <th>Data</th>
+                <th>Representante</th>
+                <th>Cliente</th>
+                <!--th>Situação</th-->
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        {% for simulacao in todas_simulacoes %}
+            <tbody class="text-center">
+                <tr>
+                    <td>
+                        <button onclick="location.href='{% url 'simulation_items' simulacao.id %}'" type="button" class="btn btn-secondary">Itens</button>
+                    </td>
+                    <th scope="row"><a href="{% url 'edit_simulation' simulacao.id %}">{{ simulacao.id }}</a></th>
+                    <td>{{ simulacao.dt_simulacao }}</td>
+                    <td>{{ simulacao.cod_rep }}</td>
+                    <td>{{ simulacao.cod_cliente }}</td>
+                    <!--td>{{ simulacao.situacao }}</td-->
+                    <td><a onclick="return confirm('Confirma a Exclusão da Simulação?')" href="{% url 'delete_simulation' simulacao.id %}"><i style="color: black;" class="bi bi-trash3-fill h3"></i></a></td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}

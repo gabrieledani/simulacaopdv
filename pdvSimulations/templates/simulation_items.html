@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-danger text-center">
+                <th># Simulação</th>
+                <th>Data</th>
+                <th>Representante</th>
+                <th>Cliente</th>
+                <th>Empresa</th>
+                <!--th>Situação</th-->
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr>
+                <th>{{ simulacao.id }}</th>
+                <td>{{ simulacao.dt_simulacao }}</td>
+                <td>{{ simulacao.cod_rep }}</td>
+                <td>{{ simulacao.cod_cliente }}</td>
+                <td>{{ simulacao.cod_empr }}</td>
+                <!--td>{{ simulacao.situacao }}</td-->
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-md-6 offset-md-3">
+        <form method="POST">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+
+            <div class="text-end">
+                <button onclick="location.href='{% url 'simulation_items' simulacao.id %}'" type="button" class="btn btn-secondary">Novo Item</button>
+                <input type="submit" value="Salvar Item" class="btn btn-success">
+            </div>
+            
+        </form>
+    </div>
+    <br>
+    
+    {% if lista_itens %}
+    <h3>Lista de Itens</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-danger text-center">
+                <th>#</th>
+                <th>Cód Item</th>
+                <th>Máscara</th>
+                <th>Qtde</th>
+                <th>Valor</th>
+                <th>EAN-13</th>
+                <!--th>Situação</th-->
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        {% for item in lista_itens %}
+            <tbody class="text-center">
+                <tr>
+                    <th scope="row"><a href="{% url 'edit_items' item.id %}">{{ item.id }}</a></th>
+                    <td>{{ item.cod_item }}</td>
+                    <td>{{ item.cod_mascara }}</td>
+                    <td>{{ item.qtde }}</td>
+                    <td>{{ item.valor }}</td>
+                    <td>{{ item.ean_item }}</td>
+                    <!--td>{{ simulacao.situacao }}</td-->
+                    <td><a onclick="return confirm('Confirma a Exclusão do Item?')" href="{% url 'delete_items' item.id %}"><i style="color: black;" class="bi bi-trash3-fill h3"></i></a></td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+    {% endif %}
+<br>
+<br>
+{% endblock %}
