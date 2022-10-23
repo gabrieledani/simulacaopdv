@@ -1,5 +1,3 @@
-from email.policy import default
-from unittest.util import _MAX_LENGTH
 from django.db import models
 
 class Simulacao(models.Model):
@@ -37,4 +35,4 @@ class Itens_Simulacao(models.Model):
     situacao = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.ean_item
+        return self.cod_item
