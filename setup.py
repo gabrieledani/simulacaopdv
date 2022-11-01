@@ -10,8 +10,8 @@ base = None
 if sys.platform == "win32":
     base = "Win32GUI"
 
-setup(  name = "integration_oracle_crmsimples",
+setup(  name = "Simulacao Pedidos de Venda",
         version = "0.1",
-        description = "Integration between oracle and CRMSimples",
+        description = "simulacao PDV",
         options = {"build_exe": build_exe_options},
         executables = [Executable("main.py", base=base)])

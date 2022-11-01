@@ -16,15 +16,15 @@ class NovaSimulacao(forms.ModelForm):
             'aprovada':'Aprovada:',
             'observacao':'Observação:',
             'txt_verba1':'Verba Adicional 1:',
-            'vlr_verba1':'',
+            'vlr_verba1':'Valor:',
             'txt_verba2':'Verba Adicional 2:',
-            'vlr_verba2':'',
+            'vlr_verba2':'Valor:',
             'txt_verba3':'Verba Adicional 3:',
-            'vlr_verba3':'',
+            'vlr_verba3':'Valor:',
             'txt_verba4':'Verba Adicional 4:',
-            'vlr_verba4':'',
+            'vlr_verba4':'Valor:',
             'txt_verba5':'Verba Adicional 5:',
-            'vlr_verba5':''
+            'vlr_verba5':'Valor:'
         }
         widgets = {
             'dt_simulacao':forms.DateInput(attrs={'type':'date','class':'form-control'}),
@@ -36,13 +36,13 @@ class NovaSimulacao(forms.ModelForm):
             'txt_verba1':forms.TextInput(attrs={'class':'form-control'}),
             'vlr_verba1':forms.NumberInput(attrs={'class':'form-control '}),
             'txt_verba2':forms.TextInput(attrs={'class':'form-control'}),
-            #'vlr_verba2':forms.NumberInput(attrs={'class':'form-control'}),
+            'vlr_verba2':forms.NumberInput(attrs={'class':'form-control'}),
             'txt_verba3':forms.TextInput(attrs={'class':'form-control'}),
-            #'vlr_verba3':forms.NumberInput(attrs={'class':'form-control'}),
+            'vlr_verba3':forms.NumberInput(attrs={'class':'form-control'}),
             'txt_verba4':forms.TextInput(attrs={'class':'form-control'}),
-            #'vlr_verba4':forms.NumberInput(attrs={'class':'form-control'}),
+            'vlr_verba4':forms.NumberInput(attrs={'class':'form-control'}),
             'txt_verba5':forms.TextInput(attrs={'class':'form-control'}),
-            #'vlr_verba5':forms.NumberInput(attrs={'class':'form-control'})
+            'vlr_verba5':forms.NumberInput(attrs={'class':'form-control'})
         }
 
 class NovoItem(forms.ModelForm):
