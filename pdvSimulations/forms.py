@@ -2,12 +2,15 @@ from django import forms
 from .models import Simulacao,Itens_Simulacao
 
 class NovaSimulacao(forms.ModelForm):
-    tipo_simulacao = forms.ChoiceField(label="Tipo de Proposta:", initial='',widget=forms.Select(attrs={'class':'form-select'}),
-                choices=((1, "Tipo 1"), (2, "Tipo 2"), (3, "Tipo 3"), (4, "Tipo 4"), (5, "Outro")), required=True)
+    tipo_simulacao = forms.ChoiceField(label="Evento Nome:", initial='',widget=forms.Select(attrs={'class':'form-select'}),
+                choices=((0, "NENHUM"),(1, "MENSAL"), (2, "TRIMESTRAL"), (3, "DIA DAS MÃES"), (4, "DIA DOS PAIS"), (5, "NATAL"),(6, "BLACK FRIDAY"),(7, "ANIVERSARIO CLIENTE"),(8, "BONUS PERFORMACE")), required=True)
 
+    tipo_evento = forms.ChoiceField(label="Evento Tipo:", initial='',widget=forms.Select(attrs={'class':'form-select'}),
+                choices=((0, "NENHUM"),(1, "DESCONTOS ESCALONADOS 2% "), (2, "DESCONTOS ESCALONADOS 5% GER"), (3, "DESCONTOS ESCALONADOS 7% GER"), (4, "10/11 - 9,10%"), (5, "12/13 - 7,69%"),(6, "20/01 - 4,80%"),(7, "BÔNUS 1%"),(8, "BÔNUS 2%"),(9, "PRAZO - 2% (30 DIAS)"),(10, "PRAZO - 4% (60 DIAS)"),(11, "PRAZO - 6% (90 DIAS)"),(11, "VERBA VALOR FECHADO)")), required=True)
+    
     class Meta:
         model = Simulacao
-        fields = ('dt_simulacao','cod_rep','cod_cliente','cod_empr','aprovada','observacao','tipo_simulacao','txt_verba1','vlr_verba1','txt_verba2','vlr_verba2','txt_verba3','vlr_verba3','txt_verba4','vlr_verba4','txt_verba5','vlr_verba5')
+        fields = ('dt_simulacao','cod_rep','cod_cliente','cod_empr','aprovada','observacao','tipo_simulacao','tipo_evento','txt_verba1','vlr_verba1','txt_verba2','vlr_verba2','txt_verba3','vlr_verba3','txt_verba4','vlr_verba4','txt_verba5','vlr_verba5')
         labels = {
             'dt_simulacao':'Data:',
             'cod_rep':'Representante:',
