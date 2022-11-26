@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <br>
+    {% if todas_simulacoes %}
+    <h3>Lista de Simulações</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-danger text-center">
+                <th>Itens</th>
+                <th>Simulação</th>
+                <th>Data</th>
+                <th>Representante</th>
+                <th>Cliente</th>
+                <!--th>Situação</th-->
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        {% for simulacao in todas_simulacoes %}
+            <tbody class="text-center">
+                <tr>
+                    <td>
+                        <button onclick="location.href='{% url 'simulation_items' simulacao.id %}'" type="button" class="btn btn-outline-danger">Itens</button>
+                    </td>
+                    <th scope="row"><a href="{% url 'edit_simulation' simulacao.id %}"> # {{ simulacao.id }}</a></th>
+                    <td>{{ simulacao.dt_simulacao }}</td>
+                    <td>{{ simulacao.cod_rep }}</td>
+                    <td>{{ simulacao.cod_cliente }}</td>
+                    <!--td>{{ simulacao.situacao }}</td-->
+                    <td><a onclick="return confirm('Confirma a Exclusão da Simulação?')" href="{% url 'delete_simulation' simulacao.id %}"><i style="color: black;" class="bi bi-trash3-fill h3"></i></a></td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+    {% endif %}
+    <div class="text-center">
+        <button onclick="location.href='{% url 'new_simulation' %}'" type="button" class="btn btn-primary">Nova Simulação</button>
+    </div>
+
+{% endblock %}

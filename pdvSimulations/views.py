@@ -2,32 +2,44 @@ from django.shortcuts import render, redirect
 from .models import Simulacao,Itens_Simulacao
 from .forms import NovaSimulacao,NovoItem
 
-
 def simulations(request):
+    print('TODAS')
+    todas_simulacoes = Simulacao.objects.all().order_by('-id')
+    return render(request, 'index.html',{'title':'Simulações de Pedido','todas_simulacoes':todas_simulacoes})
+
+
+def new_simulation(request):
+    print('NOVA')
     if request.method == 'POST':
+        print('post de nova simulação?,não sei')
         form = NovaSimulacao(request.POST or None)
         if form.is_valid():
             form.save()
-    form = NovaSimulacao()
-    todas_simulacoes = Simulacao.objects.all().order_by('-id')
-    return render(request, 'simulations.html',{'title':'Nova Simulação de Pedido','form': form,'todas_simulacoes':todas_simulacoes})
+        return redirect('simulations')
+    else:
+        form = NovaSimulacao()
+        return render(request, 'simulations.html',{'title':'Nova Simulação de Pedido','form': form})
+
 
 def delete_simulation(request, simulation_id):
+    print('APAGA')
     simulacao = Simulacao.objects.get(pk=simulation_id)
     simulacao.delete()
     return redirect('simulations')
 
+
 def edit_simulation(request, simulation_id):
+    print('EDITA')
     if request.method == 'POST':
         simulacao = Simulacao.objects.get(pk=simulation_id)
         form = NovaSimulacao(request.POST or None, instance=simulacao)
         if form.is_valid():
             form.save()
+        return redirect('simulations')
     else:
         simulacao = Simulacao.objects.get(pk=simulation_id)
         form = NovaSimulacao(instance=simulacao)
-    todas_simulacoes = Simulacao.objects.all
-    return render(request, 'simulations.html',{'title':'Editando uma Simulação','simulacao':simulacao,'form': form,'todas_simulacoes':todas_simulacoes})
+        return render(request, 'simulations.html',{'title':'Editando uma Simulação','simulacao':simulacao,'form': form})
 
 
 def simulation_items(request, simulation_id):

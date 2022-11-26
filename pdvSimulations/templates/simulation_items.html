@@ -3,6 +3,7 @@
 {% block title %} {{title}} {% endblock %}
 
 {% block content %}
+    <h3>Dados da Simulação</h3>
     <table class="table table-bordered">
         <thead>
             <tr class="table-danger text-center">
@@ -32,8 +33,10 @@
             {{ form.as_p }}
 
             <div class="text-end">
-                <button onclick="location.href='{% url 'simulation_items' simulacao.id %}'" type="button" class="btn btn-secondary">Novo Item</button>
+                <button onclick="location.href='{% url 'simulation_items' simulacao.id %}'" type="button" class="btn btn-primary">Novo Item</button>
+                
                 <input type="submit" value="Salvar Item" class="btn btn-success">
+                <button onclick="location.href='{% url 'simulations' %}'" type="button" class="btn btn-secondary">Cancelar</button>
             </div>
             
         </form>
@@ -58,7 +61,7 @@
         {% for item in lista_itens %}
             <tbody class="text-center">
                 <tr>
-                    <th scope="row"><a href="{% url 'edit_items' item.id %}">{{ item.id }}</a></th>
+                    <th scope="row"><a href="{% url 'edit_items' item.id %}"> # {{ item.id }}</a></th>
                     <td>{{ item.cod_item }}</td>
                     <td>{{ item.cod_mascara }}</td>
                     <td>{{ item.qtde }}</td>
